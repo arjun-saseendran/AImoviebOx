@@ -1,8 +1,12 @@
+import { Body } from "./components/body/Body"
+
 export const App = () => {
   
   return(
     
-    <div>Hello World</div>
+    <>
+    <Body/>
+    </>
   )
   
 }
