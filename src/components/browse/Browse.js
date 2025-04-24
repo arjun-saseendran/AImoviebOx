@@ -1,7 +1,9 @@
-import React from 'react'
+import {Header} from '../header/Header'
 
 export const Browse = () => {
   return (
-    <div>Browse</div>
+    <div>
+      <Header/>
+    </div>
   )
 }
