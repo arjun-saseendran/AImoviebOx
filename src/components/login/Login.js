@@ -2,21 +2,62 @@ import React, { useRef, useState } from "react";
 import { Header } from "../header/Header";
 import cover from "../../assets/cover.jpg";
 import { validateData } from "../../utils/validation";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../../utils/firebase";
 
 export const Login = () => {
-  const [isSignInForm, setIsSignInFrom] = useState(true);
+  const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
   const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
 
   const toggleSignInForm = () => {
-    setIsSignInFrom(!isSignInForm);
+    setIsSignInForm(!isSignInForm);
   };
 
   const handleSubmit = () => {
-    const message = validateData(name.current.value, email.current.value, password.current.value );
+    const message = validateData(
+      name?.current?.value,
+      email.current.value,
+      password.current.value
+    );
     setErrorMessage(message);
+    if (message) return;
+    if (!isSignInForm) {
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + "-" + errorMessage);
+        });
+    } else {
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + "-" + errorMessage);
+        });
+    }
   };
   return (
     <div>
@@ -29,9 +70,9 @@ export const Login = () => {
         className="absolute my-36 mx-auto right-0 left-0 p-12 bg-black text-white w-3/12 rounded-lg bg-opacity-80"
       >
         <h1 className="font-bold text-3xl py-4 ">
-          {isSignInForm ? "Sign Up" : "Login In"}
+          {isSignInForm ? "Login In" : "Sign Up"}
         </h1>
-        {isSignInForm && (
+        {!isSignInForm && (
           <input
             type="text"
             ref={name}
@@ -57,12 +98,12 @@ export const Login = () => {
           className="p-4 my-6 bg-red-700 w-full rounded-lg"
           onClick={handleSubmit}
         >
-          {isSignInForm ? "Sign Up" : "Login In"}
+          {isSignInForm ? "Login In" : " Sign Up"}
         </button>
         <p className="py-4 cursor-pointer" onClick={toggleSignInForm}>
           {isSignInForm
-            ? "Already a user? Login in Now"
-            : "New to Netflix? Signup Now"}
+            ? "New to Netflix? Signup Now"
+            : "Already a user? Login in Now"}
         </p>
       </form>
     </div>
