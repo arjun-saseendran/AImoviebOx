@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
 import { addUser, removeUser } from "../../utils/userSlice";
+import { toggleSmartSearch } from "../../utils/smartSlice";
 
 export const Header = () => {
   const navigate = useNavigate();
@@ -36,11 +37,18 @@ export const Header = () => {
     return () => unsubscribe();
   }, []);
 
+  const handleSmartSearch = () => {
+    dispatch(toggleSmartSearch())
+  }
+
   return (
     <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between">
       <img className="w-44" src={Logo} alt="logo" />
       {user && (
         <div className="flex p-2">
+          <button onClick={handleSmartSearch} className="px-4 py-2 my-2 mx-4 bg-purple-700 hover:bg-purple-800 text-white rounded-lg">
+            Smart Search
+          </button>
           <img
             className="w-12 h-12"
             src={user.photoURL || User}
