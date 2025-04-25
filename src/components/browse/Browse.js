@@ -1,15 +1,15 @@
+import { MainContainer } from "../Containers/MainContainer";
+import { SecondaryContainer } from "../Containers/SecondaryContainer";
 import { useNowPlayingMovies } from "../../hooks/useNowPlayingMovies";
-import { MainContainer } from "../containers/MainContainer";
-import { SecondaryContainer } from "../containers/SecondaryContainer";
-import { Header } from "../header/Header";
+import { Header } from "../Header/Header";
 
 export const Browse = () => {
-  // useNowPlayingMovies
+  useNowPlayingMovies();
   return (
     <div>
       <Header />
-      <MainContainer/>
-      <SecondaryContainer/>
+      <MainContainer />
+      <SecondaryContainer />
     </div>
   );
 };

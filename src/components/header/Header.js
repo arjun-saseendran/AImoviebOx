@@ -13,7 +13,6 @@ export const Header = () => {
   const dispatch = useDispatch();
 
   const user = useSelector((store) => store.user);
-  console.log(user);
 
   const handleSignOut = () => {
     signOut(auth)
@@ -24,7 +23,7 @@ export const Header = () => {
   };
 
   useEffect(() => {
-  const unsubscribe =  onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid, displayName, email, photoURL } = user;
         dispatch(addUser({ uid, displayName, email, photoURL }));
@@ -34,7 +33,7 @@ export const Header = () => {
         navigate("/");
       }
     });
-    return ()=> unsubscribe();
+    return () => unsubscribe();
   }, []);
 
   return (

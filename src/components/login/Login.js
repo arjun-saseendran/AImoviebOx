@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Header } from "../header/Header";
+import { Header } from "../Header/Header";
 import cover from "../../assets/cover.jpg";
 import { validateData } from "../../utils/validation";
 import {
