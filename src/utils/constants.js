@@ -8,3 +8,12 @@ export const API_OPTIONS = {
 };
 
 export const IMG_CDN = "https://image.tmdb.org/t/p/w500";
+
+export const GOOGLE_GEN_AI_KEY = "AIzaSyBLJObB9bmwZ8XN30OcWLJ1kvkWMQ9Tg7o"
+  
+
+
+
+
+
+  

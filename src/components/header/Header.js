@@ -16,6 +16,7 @@ export const Header = () => {
   const dispatch = useDispatch();
 
   const user = useSelector((store) => store.user);
+  const smartSearch = useSelector((state) => state.smartSearch?.showSmartSearch);
 
   const handleSignOut = () => {
     signOut(auth)
@@ -48,21 +49,24 @@ export const Header = () => {
       <img className="w-44" src={Logo} alt="logo" />
       {user && (
         <div className="flex p-2">
-          <select
-            className="p-2 m-2 bg-gray-900 text-white"
-            onChange={(e) => dispatch(changeLanguage(e.target.value))}
-          >
-            {SUPPORTED_LANGUAGES.map((lang) => (
-              <option key={lang.identifier} value={lang.identifier}>
-                {lang.name}
-              </option>
-            ))}
-          </select>
+          {smartSearch && (
+            <select
+              className="p-2 m-2 bg-gray-900 text-white"
+              onChange={(e) => dispatch(changeLanguage(e.target.value))}
+            >
+              {SUPPORTED_LANGUAGES.map((lang) => (
+                <option key={lang.identifier} value={lang.identifier}>
+                  {lang.name}
+                </option>
+              ))}
+            </select>
+          )}
+
           <button
             onClick={handleSmartSearch}
-            className="px-4 py-2 my-2 mx-4 bg-purple-700 hover:bg-purple-800 text-white rounded-lg"
+            className="px-4 py-2 my-2 mx-4 bg-red-600 hover:bg-red-700 text-white rounded-lg"
           >
-            Smart Search
+          {smartSearch ? 'Home' : 'Smart Search'}  
           </button>
           <img
             className="w-12 h-12"
