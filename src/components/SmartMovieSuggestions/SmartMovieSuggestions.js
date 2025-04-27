@@ -1,7 +1,15 @@
-import React from 'react'
+import { useSelector } from "react-redux";
+import { MovieList } from "../MovieList/MovieList";
 
 export const SmartMovieSuggestions = () => {
+  const { movieResult, movieNames } = useSelector((state) => state.smartSearch);
+  if (!movieNames) return;
   return (
-    <div>SmartMovieSuggestions</div>
-  )
-}
+    <div className="m-4 p-4 bg-black text-white">
+     {movieNames.map((movieName, index)=>(
+       <MovieList key={movieName} title={movieName} movies={movieResult[index]} />
+     ))}
+      
+    </div>
+  );
+};
