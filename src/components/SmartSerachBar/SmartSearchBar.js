@@ -38,9 +38,9 @@ export const SmartSearchBar = () => {
   };
 
   return (
-    <div className="flex justify-center p-[10%]">
+    <div className="flex justify-center px-2 md:px-0  pt-[40%] md:pt-[10%] ">
       <form
-        className=" bg-black w-1/2 grid grid-cols-12 rounded-lg"
+        className=" bg-black w-full  md:w-1/2 grid grid-cols-12 rounded-lg"
         onSubmit={(e) => e.preventDefault()}
       >
         <input
@@ -51,7 +51,7 @@ export const SmartSearchBar = () => {
         />
         <button
           onClick={handleSmartSearch}
-          className="py-2 px-4 m-4 bg-red-700 col-span-3 text-white rounded-lg"
+          className="md:py-2 px-4 m-2 md:m-4 bg-red-700 col-span-3 text-white rounded-lg"
         >
           {lang[selectedLanguage]?.search}
         </button>

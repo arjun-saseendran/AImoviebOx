@@ -5,13 +5,16 @@ import cover from '../../assets/cover.jpg'
 
 export const SmartSearch = () => {
   return (
-    <div>
-        <div>
-        <img className="fixed -z-10" src={cover} alt="cover-photo" />
+    <>
+   
+        <div className="fixed -z-10">
+        <img className='h-screen  object-cover '  src={cover} alt="cover-photo" />
       </div>
+      <div >
         <SmartSearchBar/>
         <SmartMovieSuggestions/>
     </div>
+    </>
   )
 }
 
