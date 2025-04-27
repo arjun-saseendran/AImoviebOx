@@ -10,7 +10,7 @@ import {
 import { auth } from "../../utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUser } from "../../utils/userSlice";
-import User from '../../assets/user.jpg'
+import User from "../../assets/user.jpg";
 
 export const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
@@ -28,7 +28,7 @@ export const Login = () => {
     const message = validateData(
       name?.current?.value,
       email.current.value,
-      password.current.value
+      password.current.value,
     );
     setErrorMessage(message);
     if (message) return;
@@ -36,7 +36,7 @@ export const Login = () => {
       createUserWithEmailAndPassword(
         auth,
         email.current.value,
-        password.current.value
+        password.current.value,
       )
         .then((userCredential) => {
           const user = userCredential.user;
@@ -61,7 +61,7 @@ export const Login = () => {
       signInWithEmailAndPassword(
         auth,
         email.current.value,
-        password.current.value
+        password.current.value,
       )
         .then((userCredential) => {
           const user = userCredential.user;
@@ -76,12 +76,12 @@ export const Login = () => {
   return (
     <div>
       <Header />
-      <div>
-        <img className="absolute" src={cover} alt="cover-photo" />
+      <div className="absolute w-screen">
+        <img className="h-screen object-cover" src={cover} alt="cover-photo" />
       </div>
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="absolute my-36 mx-auto right-0 left-0 p-12 bg-black text-white w-3/12 rounded-lg bg-opacity-80"
+        className="absolute  mt-20 md:my-36 mx-auto right-0 left-0 p-12 bg-black text-white w-full md:w-3/12 rounded-lg bg-opacity-80"
       >
         <h1 className="font-bold text-3xl py-4 ">
           {isSignInForm ? "Login In" : "Sign Up"}
@@ -91,25 +91,25 @@ export const Login = () => {
             type="text"
             ref={name}
             placeholder="Full Name"
-            className="p-4 my-4 w-full bg-gray-700"
+            className="p-4 my-1 md:my-4 w-full bg-gray-700"
           />
         )}
         <input
           type="email"
           ref={email}
           placeholder="Email Address"
-          className="p-4 my-4 w-full bg-gray-700"
+          className="p-4 my-1 md:my-4 w-full bg-gray-700"
         />
 
         <input
           type="password"
           ref={password}
           placeholder="Password"
-          className="p-4 my-4 w-full bg-gray-700"
+          className="p-4 my-1 md:my-4 w-full bg-gray-700"
         />
         <p className="text-red-500 font-bold text-lg py-2">{errorMessage}</p>
         <button
-          className="p-4 my-6 bg-red-700 w-full rounded-lg"
+          className="p-4  md:my-6 bg-red-700 w-full rounded-lg"
           onClick={handleSubmit}
         >
           {isSignInForm ? "Login In" : " Sign Up"}
