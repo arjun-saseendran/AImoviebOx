@@ -6,16 +6,17 @@ import { API_OPTIONS } from "../../utils/constants";
 import { addSmartSearchResult } from "../../utils/smartSlice";
 export const SmartSearchBar = () => {
   const selectedLanguage = useSelector(
-    (state) => state.language?.languageOption
+    (state) => state.language?.languageOption,
   );
   const searchText = useRef(null);
   const dispatch = useDispatch();
   const searchMovies = async (movie) => {
     const data = await fetch(
       `https://api.themoviedb.org/3/search/movie?query=${movie}&include_adult=false&language=en-US&page=1`,
-      API_OPTIONS
+      API_OPTIONS,
     );
     const json = await data.json();
+
     return json.results;
   };
 

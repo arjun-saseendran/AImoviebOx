@@ -7,7 +7,7 @@ export const SmartSearch = () => {
   return (
     <div>
         <div>
-        <img className="absolute -z-10" src={cover} alt="cover-photo" />
+        <img className="fixed -z-10" src={cover} alt="cover-photo" />
       </div>
         <SmartSearchBar/>
         <SmartMovieSuggestions/>
