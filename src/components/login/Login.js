@@ -116,7 +116,7 @@ export const Login = () => {
         </button>
         <p className="py-4 cursor-pointer" onClick={toggleSignInForm}>
           {isSignInForm
-            ? "New to Netflix? Signup Now"
+            ? "New to AImoviebOx? Signup Now"
             : "Already a user? Login in Now"}
         </p>
       </form>
