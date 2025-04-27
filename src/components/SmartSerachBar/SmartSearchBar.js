@@ -8,7 +8,7 @@ export const SmartSearchBar = () => {
   const selectedLanguage = useSelector(
     (state) => state.language?.languageOption,
   );
-  const searchText = useRef(null);
+  let searchText = useRef(null);
   const dispatch = useDispatch();
   const searchMovies = async (movie) => {
     const data = await fetch(
@@ -35,6 +35,7 @@ export const SmartSearchBar = () => {
     const promiseArray = movieNames.map((movie) => searchMovies(movie));
     const movieResult = await Promise.all(promiseArray);
     dispatch(addSmartSearchResult({ movieResult, movieNames }));
+    searchText.current.value = null
   };
 
   return (
